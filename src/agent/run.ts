@@ -5,6 +5,10 @@ import { openai } from '@ai-sdk/openai';
 
 import { SYSTEM_PROMPT } from './system/prompt.ts';
 
+// tools
+import { tools } from './tools/index.ts';
+import { executeTool } from './executeTool.ts';
+
 import type { AgentCallbacks } from '../types.ts';
 
 const MODEL_NAME = 'gpt-5-mini';
@@ -14,16 +18,19 @@ export async function runAgent(
   conversationHistory: ModelMessage[],
   callbacks: AgentCallbacks,
 ): Promise<any> {
-  const { text } = await generateText({
+  const { text, toolCalls } = await generateText({
     model: openai(MODEL_NAME),
     prompt: userMessage,
     system: SYSTEM_PROMPT,
+    tools,
   });
 
-  console.log(text);
+  console.log(text, toolCalls);
 }
 
-runAgent("What's the weather like today?", [], {
+const userMessage = 'what is current time right now?';
+
+runAgent(userMessage, [], {
   onToken: (token) => console.log('Token:', token),
   onToolCallStart: (name, args) =>
     console.log(`Tool call started: ${name}`, args),

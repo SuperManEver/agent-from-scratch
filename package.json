@@ -1,6 +1,7 @@
 {
   "name": "agent-from-scratch",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "bin": {
     "agi": "./dist/cli.js"
