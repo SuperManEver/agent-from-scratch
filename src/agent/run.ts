@@ -23,7 +23,7 @@ export async function runAgent(
   conversationHistory: ModelMessage[],
   callbacks: AgentCallbacks,
 ): Promise<any> {
-  const { text, toolCalls } = await generateText({
+  const { text } = await generateText({
     model: openai(MODEL_NAME),
     prompt: userMessage,
     system: SYSTEM_PROMPT,
@@ -34,7 +34,9 @@ export async function runAgent(
     },
   });
 
-  console.log(text, toolCalls);
+  await Laminar.flush();
+
+  console.log(text);
 }
 
 const userMessage = 'what is current time right now?';
