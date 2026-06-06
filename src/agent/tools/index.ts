@@ -1,6 +1,9 @@
 import { getDateTime } from './dateTime.ts';
 import { readFile, writeFile, listFiles, deleteFile } from './file.ts';
 
+import { executeCode } from './codeExecution.ts';
+import { webSearch } from './webSearch.ts';
+
 // All tools combined for the agent
 export const tools = {
   readFile,
@@ -8,10 +11,14 @@ export const tools = {
   listFiles,
   deleteFile,
   getDateTime,
+  webSearch,
+  executeCode,
 };
 
 // Export individual tools for selective use in evals
 export { readFile, writeFile, listFiles, deleteFile } from './file.ts';
+export { webSearch } from './webSearch.ts';
+export { executeCode } from './codeExecution.ts';
 
 // Tool sets for evals
 export const fileTools = {
