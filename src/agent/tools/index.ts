@@ -1,6 +1,7 @@
 import { getDateTime } from './dateTime.ts';
 import { readFile, writeFile, listFiles, deleteFile } from './file.ts';
 
+import { runCommand } from './shell.ts';
 import { executeCode } from './codeExecution.ts';
 import { webSearch } from './webSearch.ts';
 
@@ -17,6 +18,7 @@ export const tools = {
 
 // Export individual tools for selective use in evals
 export { readFile, writeFile, listFiles, deleteFile } from './file.ts';
+export { runCommand } from './shell.ts';
 export { webSearch } from './webSearch.ts';
 export { executeCode } from './codeExecution.ts';
 
@@ -26,4 +28,8 @@ export const fileTools = {
   writeFile,
   listFiles,
   deleteFile,
+};
+
+export const shellTools = {
+  runCommand,
 };
